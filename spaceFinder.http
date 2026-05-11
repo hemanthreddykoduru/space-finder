@@ -1,0 +1,23 @@
+GET https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder/
+###
+
+GET https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder/?id=d4c57b48-7176-4a23-b212-1baca6c06400
+###
+POST https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder
+Content-Type: application/json
+
+{
+    "location": "Bengaluru",
+    "name": "Cubbon Park"
+}
+###
+PUT https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder/?id=54d6fcbb-5235-40e8-874a-39a9f6d74c6d
+Content-Type: application/json
+
+{
+    "location": "Dubai updated",
+    "name": "Burj Khalifa updated"
+}
+###
+DELETE https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder/?id=54d6fcbb-5235-40e8-874a-39a9f6d74c6d
+###
