@@ -1,9 +1,17 @@
 import { Stack, StackProps } from "aws-cdk-lib";
-import { LambdaIntegration, RestApi } from "aws-cdk-lib/aws-apigateway";
+import {
+  AuthorizationType,
+  CognitoUserPoolsAuthorizer,
+  LambdaIntegration,
+  MethodOptions,
+  RestApi,
+} from "aws-cdk-lib/aws-apigateway";
+import { IUserPool } from "aws-cdk-lib/aws-cognito";
 import { Construct } from "constructs";
 
 interface ApiStackProps extends StackProps {
   spacesLambdaIntegration: LambdaIntegration;
+  userPool: IUserPool;
 }
 
 export class ApiStack extends Stack {
@@ -11,10 +19,45 @@ export class ApiStack extends Stack {
     super(scope, id, props);
 
     const api = new RestApi(this, "SpaceFinderApi");
+
+    const authorizer = new CognitoUserPoolsAuthorizer(
+      this,
+      "SpacesAoiAuthorizer",
+      {
+        cognitoUserPools: [props.userPool],
+        identitySource: "method.request.header.Authorization",
+      },
+    );
+
+    authorizer._attachToApi(api);
+
+    const optionsWithAuthorizer: MethodOptions = {
+      authorizationType: AuthorizationType.COGNITO,
+      authorizer: {
+        authorizerId: authorizer.authorizerId,
+      },
+    };
+
     const spaceFinderResource = api.root.addResource("spaceFinder");
-    spaceFinderResource.addMethod("GET", props.spacesLambdaIntegration);
-    spaceFinderResource.addMethod("POST", props.spacesLambdaIntegration);
-    spaceFinderResource.addMethod("PUT", props.spacesLambdaIntegration);
-    spaceFinderResource.addMethod("DELETE", props.spacesLambdaIntegration);
+    spaceFinderResource.addMethod(
+      "GET",
+      props.spacesLambdaIntegration,
+      optionsWithAuthorizer,
+    );
+    spaceFinderResource.addMethod(
+      "POST",
+      props.spacesLambdaIntegration,
+      optionsWithAuthorizer,
+    );
+    spaceFinderResource.addMethod(
+      "PUT",
+      props.spacesLambdaIntegration,
+      optionsWithAuthorizer,
+    );
+    spaceFinderResource.addMethod(
+      "DELETE",
+      props.spacesLambdaIntegration,
+      optionsWithAuthorizer,
+    );
   }
 }

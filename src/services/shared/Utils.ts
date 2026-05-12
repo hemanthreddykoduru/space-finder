@@ -1,4 +1,5 @@
 import { JSONValidationError } from "./Validator";
+import { APIGatewayProxyEvent } from "aws-lambda";
 
 export const parseJson = (arg: string) => {
   try {
@@ -10,4 +11,9 @@ export const parseJson = (arg: string) => {
 
 export const idGenerator = () => {
   return crypto.randomUUID();
+};
+
+export const belongsToAdminGroup = (event: APIGatewayProxyEvent) => {
+  const cognitoUser = event.requestContext.authorizer?.claims;
+  return cognitoUser?.["cognito:groups"]?.includes("SpaceAdmins");
 };

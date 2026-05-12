@@ -1,23 +1,31 @@
-GET https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder/
+@url = https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/
+@token = eyJraWQiOiIyWkYxNmRCQjhJM2I3WDMrRXFwa3YyQ1pSNGVNeE10bXduaU5OWVFJalBVPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2ODUxNDM2MC0yMDkxLTcwZDctOGJkOS1mYTA3MGY0OWUwYmEiLCJjb2duaXRvOmdyb3VwcyI6WyJTcGFjZUFkbWlucyJdLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9JTUZFaUJGV2wiLCJjb2duaXRvOnVzZXJuYW1lIjoiZGl2eWFtIiwib3JpZ2luX2p0aSI6IjNmNjFhNjdiLTMwMjMtNGYwZC05NzRiLTRjZTcxYzhhNzMyZCIsImF1ZCI6ImF0Y3Rwb3I5dmZtMzVubjUyb29kcWtlMDYiLCJldmVudF9pZCI6ImE0NTE5MjE0LTdmMDUtNGNiNy04NWNhLWZkMTE5ZDM1NzcyZiIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNzc4NTQ5MTA4LCJleHAiOjE3Nzg1NTI3MDgsImlhdCI6MTc3ODU0OTEwOCwianRpIjoiYjcwZmYwMWEtZmUxNi00MGEzLWI5OTctMTljNzE2NDExYTZlIn0.huE6yV0GtZYLlv5sZyuOY8kochd1VcapRYquAA6E_4hi8kF6hcHoAgmZq2VNPKPY4U8MGXnle5OJghdHxK3wYeTD2KcLhmPWCECmG20R_oe5PxRvOhNwKr8ZlxGlyMkkoc0d7SlbTDWLp4j5WmR_Cce4icAr3nF_01yWrdXHu6_kAi24TbnCbdSzDU1-NFE8sDlREh8RPA05_htwgorxePCBP11WP_Qge051hhK6mMiMtW-n8LMc1BX7RRXEQoy9M5N2cMevMJ8FxsGe0ReubQehBClAXgE6mKL7env8m3zd9a1csSD-vsH9ol7yvUjDtKvrE6unEeGr2d-xRrA5Ug
+
+GET {{url}}/spaceFinder/
+Authorization: Bearer {{token}}
 ###
 
-GET https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder/?id=d4c57b48-7176-4a23-b212-1baca6c06400
+GET {{url}}/spaceFinder/?id=d4c57b48-7176-4a23-b212-1baca6c06400
+Authorization: Bearer {{token}}
 ###
-POST https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder
+POST {{url}}/spaceFinder
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "location": "Bengaluru",
-    "name": "Cubbon Park"
+    "location": "Los Angeles",
+    "name": "Hollywood Sign"
 }
 ###
-PUT https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder/?id=54d6fcbb-5235-40e8-874a-39a9f6d74c6d
+PUT {{url}}/spaceFinder/?id=15388687-4d8d-4114-8f8c-b6993b32163e
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "location": "Dubai updated",
-    "name": "Burj Khalifa updated"
+    "location": "Los Angeles updated",
+    "name": "Hollywood Sign updated"
 }
 ###
-DELETE https://z67jp4ep9c.execute-api.us-west-2.amazonaws.com/prod/spaceFinder/?id=54d6fcbb-5235-40e8-874a-39a9f6d74c6d
+DELETE {{url}}/spaceFinder/?id=5bce3d8d-ce75-4631-99b6-264f2673c3e3
+Authorization: Bearer {{token}}
 ###
