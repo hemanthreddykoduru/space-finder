@@ -84,3 +84,19 @@
 .btn-logout:hover {
   background: var(--accent-bg);
 }
+
+.btn-signup {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-signup:hover {
+  background: var(--accent-bg);
+}

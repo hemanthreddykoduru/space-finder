@@ -1,10 +1,11 @@
 import { CfnOutput, Stack, StackProps } from "aws-cdk-lib";
 import {
+  CfnIdentityPool,
+  CfnIdentityPoolRoleAttachment,
   CfnUserPoolGroup,
   UserPool,
   UserPoolClient,
-  CfnIdentityPool,
-  CfnIdentityPoolRoleAttachment,
+  UserPoolEmail,
 } from "aws-cdk-lib/aws-cognito";
 import {
   Effect,
@@ -13,6 +14,7 @@ import {
   Role,
 } from "aws-cdk-lib/aws-iam";
 import { IBucket } from "aws-cdk-lib/aws-s3";
+import { EmailIdentity, Identity } from "aws-cdk-lib/aws-ses";
 import { Construct } from "constructs";
 
 export class AuthStack extends Stack {
@@ -34,12 +36,21 @@ export class AuthStack extends Stack {
   }
 
   private createUserPool() {
+    new EmailIdentity(this, "SpaceFinderSesIdentity", {
+      identity: Identity.email("divyampatro1997@gmail.com"),
+    });
+
     this.userPool = new UserPool(this, "SpaceFinderUserPool", {
       selfSignUpEnabled: true,
       signInAliases: {
         email: true,
         username: true,
       },
+      email: UserPoolEmail.withSES({
+        fromEmail: "divyampatro1997@gmail.com",
+        fromName: "Space Finder",
+        sesRegion: "us-west-2",
+      }),
     });
 
     new CfnOutput(this, "UserPoolId", {

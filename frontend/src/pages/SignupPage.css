@@ -1,0 +1,122 @@
+.signup-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 40px 16px;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+
+.signup-card h1 {
+  font-size: 28px;
+  margin: 0 0 6px;
+}
+
+.signup-subtitle {
+  font-size: 14px;
+  color: var(--text);
+  margin: 0 0 28px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.form-field input {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.form-field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.form-field input.input-error {
+  border-color: #e53e3e;
+}
+
+.field-error {
+  font-size: 13px;
+  color: #e53e3e;
+}
+
+.signup-error {
+  font-size: 13px;
+  color: #e53e3e;
+  margin: 0;
+  padding: 10px 12px;
+  background: rgba(229, 62, 62, 0.08);
+  border-radius: 6px;
+  border: 1px solid rgba(229, 62, 62, 0.25);
+}
+
+.btn-submit {
+  margin-top: 8px;
+  padding: 11px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-submit:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.signup-login-link {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text);
+  text-align: center;
+}
+
+.signup-login-link a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-login-link a:hover {
+  text-decoration: underline;
+}

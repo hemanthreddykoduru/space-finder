@@ -4,10 +4,11 @@ import "./Navbar.css";
 interface NavbarProps {
   username?: string;
   onLogin?: () => void;
+  onSignup?: () => void;
   onLogout?: () => void;
 }
 
-export default function Navbar({ username, onLogin, onLogout }: NavbarProps) {
+export default function Navbar({ username, onLogin, onSignup, onLogout }: NavbarProps) {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -37,9 +38,14 @@ export default function Navbar({ username, onLogin, onLogout }: NavbarProps) {
             </button>
           </>
         ) : (
-          <button className="btn-login" onClick={onLogin}>
-            Login
-          </button>
+          <>
+            <button className="btn-login" onClick={onLogin}>
+              Login
+            </button>
+            <button className="btn-signup" onClick={onSignup}>
+              Sign up
+            </button>
+          </>
         )}
       </div>
     </nav>

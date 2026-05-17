@@ -6,6 +6,7 @@ import SpacesPage from "./pages/SpacesPage";
 import CreateSpacePage from "./pages/CreateSpacePage";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 import { AuthService } from "./services/AuthService";
 import { DataService } from "./services/DataService";
 import "./App.css";
@@ -56,6 +57,7 @@ function App() {
       <Navbar
         username={username}
         onLogin={() => navigate("/login")}
+        onSignup={() => navigate("/signup")}
         onLogout={handleLogout}
       />
       <Routes>
@@ -85,6 +87,15 @@ function App() {
           }
         />
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+        <Route
+          path="/signup"
+          element={
+            <SignupPage
+              authService={authService}
+              onSignupComplete={handleLogin}
+            />
+          }
+        />
       </Routes>
     </>
   );

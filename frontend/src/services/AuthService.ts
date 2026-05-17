@@ -2,6 +2,8 @@ import { Amplify } from "aws-amplify";
 import {
   signIn,
   signOut,
+  signUp,
+  confirmSignUp,
   getCurrentUser,
   fetchAuthSession,
   type SignInOutput,
@@ -18,6 +20,18 @@ Amplify.configure({
 });
 
 export class AuthService {
+  public async signup(username: string, email: string, password: string): Promise<void> {
+    await signUp({
+      username,
+      password,
+      options: { userAttributes: { email } },
+    });
+  }
+
+  public async confirmSignup(username: string, code: string): Promise<void> {
+    await confirmSignUp({ username, confirmationCode: code });
+  }
+
   public async login(username: string, password: string): Promise<SignInOutput> {
     await signOut();
     return signIn({
