@@ -145,6 +145,9 @@ export default function SignupPage({ authService, onSignupComplete }: SignupPage
               onChange={(e) => setPassword(e.target.value)}
               className={fieldErrors.password ? "input-error" : ""}
             />
+            <span className="field-hint">
+              Min. 8 characters with uppercase, lowercase, number, and symbol (e.g. !@#$)
+            </span>
             {fieldErrors.password && <span className="field-error">{fieldErrors.password}</span>}
           </div>
           <div className="form-field">
