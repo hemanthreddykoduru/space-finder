@@ -7,6 +7,7 @@ import {
   getCurrentUser,
   fetchAuthSession,
   type SignInOutput,
+  type SignUpOutput,
 } from "@aws-amplify/auth";
 
 Amplify.configure({
@@ -20,8 +21,12 @@ Amplify.configure({
 });
 
 export class AuthService {
-  public async signup(username: string, email: string, password: string): Promise<void> {
-    await signUp({
+  public async signup(
+    username: string,
+    email: string,
+    password: string,
+  ): Promise<SignUpOutput> {
+    return signUp({
       username,
       password,
       options: { userAttributes: { email } },

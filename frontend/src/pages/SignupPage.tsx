@@ -36,8 +36,16 @@ export default function SignupPage({ authService, onSignupComplete }: SignupPage
     setFormError("");
     setIsLoading(true);
     try {
-      await authService.signup(username.trim(), email.trim(), password);
-      setStep("confirm");
+      const { isSignUpComplete } = await authService.signup(
+        username.trim(),
+        email.trim(),
+        password,
+      );
+      if (isSignUpComplete) {
+        await onSignupComplete(username.trim(), password);
+      } else {
+        setStep("confirm");
+      }
     } catch (err) {
       setFormError(err instanceof Error ? err.message : "Signup failed. Please try again.");
     } finally {

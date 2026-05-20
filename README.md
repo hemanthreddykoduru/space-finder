@@ -4,7 +4,7 @@ A full-stack cloud application for listing and discovering spaces (venues, rooms
 
 **Live demo:** https://d24kqex7dx8ru7.cloudfront.net
 
-> **Trying the demo:** SES is currently in sandbox mode, so signup emails are only delivered to pre-verified addresses. Email divyampatro1997@gmail.com with your address to get verified, then sign up at the link above.
+> **Trying the demo:** Sign up with any username and email — accounts are confirmed instantly, no email verification required.
 
 ---
 

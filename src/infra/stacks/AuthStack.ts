@@ -13,9 +13,12 @@ import {
   PolicyStatement,
   Role,
 } from "aws-cdk-lib/aws-iam";
+import { Runtime } from "aws-cdk-lib/aws-lambda";
+import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { EmailIdentity, Identity } from "aws-cdk-lib/aws-ses";
 import { Construct } from "constructs";
+import { join } from "path";
 
 export class AuthStack extends Stack {
   public userPool: UserPool;
@@ -40,6 +43,19 @@ export class AuthStack extends Stack {
       identity: Identity.email("divyampatro1997@gmail.com"),
     });
 
+    const preSignUpLambda = new NodejsFunction(this, "PreSignUpLambda", {
+      runtime: Runtime.NODEJS_20_X,
+      handler: "handler",
+      entry: join(
+        __dirname,
+        "..",
+        "..",
+        "services",
+        "auth",
+        "preSignUp.ts",
+      ),
+    });
+
     this.userPool = new UserPool(this, "SpaceFinderUserPool", {
       selfSignUpEnabled: true,
       signInAliases: {
@@ -51,6 +67,9 @@ export class AuthStack extends Stack {
         fromName: "Space Finder",
         sesRegion: "us-west-2",
       }),
+      lambdaTriggers: {
+        preSignUp: preSignUpLambda,
+      },
     });
 
     new CfnOutput(this, "UserPoolId", {
