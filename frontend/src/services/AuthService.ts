@@ -6,6 +6,7 @@ import {
   confirmSignUp,
   getCurrentUser,
   fetchAuthSession,
+  signInWithRedirect,
   type SignInOutput,
   type SignUpOutput,
 } from "@aws-amplify/auth";
@@ -46,6 +47,14 @@ export class AuthService {
         authFlowType: "USER_PASSWORD_AUTH",
       },
     });
+  }
+
+  public async loginWithProvider(provider: "Google" | "GitHub") {
+    if (provider === "Google") {
+      await signInWithRedirect({ provider: "Google" });
+    } else {
+      await signInWithRedirect({ provider: { custom: "GitHub" } });
+    }
   }
 
   public async getIdToken(): Promise<string> {
